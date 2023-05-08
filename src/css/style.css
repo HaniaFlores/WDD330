@@ -179,6 +179,11 @@ button {
   width: 100%;
 }
 
+.product-detail img {
+  margin: 0 auto;
+  display: block;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
