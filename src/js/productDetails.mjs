@@ -1,9 +1,10 @@
 import { findProductById } from "./productData.mjs";
-import { setLocalStorage } from "./utils.mjs";
+import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 let product = {};
 
 function addToCart() {
   setLocalStorage("so-cart", product);
+  animationIcon();
 }
 
 function renderProductDetails() {
@@ -25,7 +26,23 @@ function renderProductDetails() {
 export default async function productDetails(productId) {
   // product deatails
   product = await findProductById(productId);
- 
+GR--html-error-empty-cart
+ main
   renderProductDetails();
   document.getElementById("addToCart").addEventListener("click", addToCart);
+}
+
+// Animation of icon when an item or tent is added by Fernando
+function animationIcon() {
+  const cartStorage = getLocalStorage("so-cart").length;
+  const cart = document.querySelector(".cart");
+  if (!cart.querySelector(".cart__items")) {
+    const cartItems = document.createElement("div");
+    cartItems.classList.add("cart__items");
+    cartItems.textContent = cartStorage;
+    cart.append(cartItems);
+  } else {
+    const cartItems = cart.querySelector(".cart__items");
+    cartItems.textContent = cartStorage;
+  }
 }

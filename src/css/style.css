@@ -110,6 +110,19 @@ button {
   fill: gray;
 }
 
+.cart__items {
+  font-size: 0.8rem;
+  position: absolute;
+  bottom: 5px;
+  right: 20px;
+  background-color: #f0a868;
+  border-radius: 50%;
+  padding: 0.3rem;
+  color: #303030;
+  z-index: -1;
+  font-weight: bold;
+}
+
 /* End cart icon styles */
 
 .mission {
@@ -164,6 +177,11 @@ button {
 
 .product-detail img {
   width: 100%;
+}
+
+.product-detail img {
+  margin: 0 auto;
+  display: block;
 }
 
 /* Start cart list card styles */
