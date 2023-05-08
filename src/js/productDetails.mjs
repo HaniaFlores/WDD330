@@ -26,6 +26,8 @@ function renderProductDetails() {
 export default async function productDetails(productId) {
   // product deatails
   product = await findProductById(productId);
+GR--html-error-empty-cart
+ main
   renderProductDetails();
   document.getElementById("addToCart").addEventListener("click", addToCart);
 }
