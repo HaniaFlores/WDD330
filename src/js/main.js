@@ -1,3 +1,3 @@
-import  productList  from "./productList.mjs"
+import productList from "./productList.mjs";
 
-let products = productList(".product-list", "tents")
+let products = productList(".product-list", "tents");
