@@ -2,8 +2,9 @@ import { getData } from "./productData.mjs"
 
 
 export default async function productList(selector, category) {
+    let el = document.querySelector(selector);
     const products = await getData(category);
-    renderList(products, selector)
+    renderList(products, el)
 }
 
 export function productCardTemplate(product) {
@@ -21,23 +22,7 @@ export function productCardTemplate(product) {
 }
 
 function renderList(list, el) { 
-    const htmlStrings = list.filter(x => x.Image != "").map(productCardTemplate); 
-    el.insertAdjacentHTML("afterbegin", htmlStrings.join("")); }
+    const htmlStrings = list.map(productCardTemplate); 
+    el.insertAdjacentHTML("afterbegin", htmlStrings.join("")); 
+}
 
-
-function checkIfImageExists(url, callback) {
-    const img = new Image();
-    img.src = url;
-
-    if (img.complete) {
-      callback(true);
-    } else {
-      img.onload = () => {
-        callback(true);
-      };
-      
-      img.onerror = () => {
-        callback(false);
-      };
-    }
-  }
