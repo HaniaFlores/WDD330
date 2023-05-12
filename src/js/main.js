@@ -1,3 +1,7 @@
 import productList from "./productList.mjs";
+import { animationIcon } from "./utils.mjs";
 
-let products = productList(".product-list", "tents");
+// Add a superscript number of items in the cart to the backpack icon.
+animationIcon();
+
+productList(".product-list", "tents");

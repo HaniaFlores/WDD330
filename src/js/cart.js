@@ -1,4 +1,8 @@
 import { getLocalStorage } from "./utils.mjs";
+import { animationIcon } from "./utils.mjs";
+
+// Add a superscript number of items in the cart to the backpack icon.
+animationIcon();
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");

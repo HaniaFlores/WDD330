@@ -37,4 +37,22 @@ export function getParam(param) {
   return product;
 }
 
-
+// Animation of icon when an item or tent is added by Fernando
+export function animationIcon() {
+  let cartStorage = getLocalStorage("so-cart");
+  if (!cartStorage) {
+    cartStorage = 0;
+  } else {
+    cartStorage = cartStorage.length;
+  }
+  const cart = document.querySelector(".cart");
+  if (!cart.querySelector(".cart__items")) {
+    const cartItems = document.createElement("div");
+    cartItems.classList.add("cart__items");
+    cartItems.textContent = cartStorage;
+    cart.append(cartItems);
+  } else {
+    const cartItems = cart.querySelector(".cart__items");
+    cartItems.textContent = cartStorage;
+  }
+}
