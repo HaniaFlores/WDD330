@@ -9,6 +9,10 @@ function renderCartContents() {
 
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+
+  // while (cartItems !== "") {
+  //   calculateTotal(cartItems);
+  // }
 }
 
 function cartItemTemplate(item) {
@@ -28,6 +32,13 @@ function cartItemTemplate(item) {
 </li>`;
 
   return newItem;
+}
+
+// Total in cart
+function calculateTotal(cartItems) {
+  let total;
+  cartItems.map((item) => total += item.FinalPrice)
+  console.log(total);
 }
 
 renderCartContents();
