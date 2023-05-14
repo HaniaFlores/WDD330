@@ -224,6 +224,17 @@ button {
   grid-column: 3;
 }
 
+.hide {
+  display: none;
+  margin-bottom: 0.5em;
+  margin-left: 0.5em;
+}
+
+.cart-total {
+  display: inline;
+  font-weight: bold;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

@@ -10,9 +10,11 @@ function renderCartContents() {
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 
-  // while (cartItems !== "") {
-  //   calculateTotal(cartItems);
-  // }
+  //The total element will only appear when the cart is not empty.
+  if (cartItems !== "") {
+    calculateTotal();
+    document.querySelector(".hide").style.display = "block";
+  }
 }
 
 function cartItemTemplate(item) {
@@ -35,10 +37,20 @@ function cartItemTemplate(item) {
 }
 
 // Total in cart
-function calculateTotal(cartItems) {
-  let total;
-  cartItems.map((item) => total += item.FinalPrice)
-  console.log(total);
+function calculateTotal() {
+  let total = 0;
+  const order = getLocalStorage("so-cart");
+  order.map((product) => (total += product.FinalPrice));
+
+  const totalElement = document.querySelector(".cart-total");
+  const totalParagraph = document.createElement("p");
+  totalParagraph.style.display = "inline";
+  totalParagraph.style.fontWeight = "lighter";
+  totalParagraph.innerHTML = `$${total}`;
+  totalElement.appendChild(totalParagraph);
 }
 
-renderCartContents();
+//renderCartContents will run if "so-cart" exist in localStorage
+if (localStorage.getItem("so-cart") !== null) {
+  renderCartContents();
+}
