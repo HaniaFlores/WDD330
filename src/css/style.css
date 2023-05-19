@@ -188,6 +188,31 @@ button {
   display: block;
 }
 
+.products__sort {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.products__sort button {
+  background-color: #f0a868;
+  color: #303030;
+  margin: 0.5rem;
+  width: 100%;
+  max-width: 200px;
+}
+
+.products__sort button.asc span.desc {
+  display: none;
+  font-weight: bold;
+}
+
+.products__sort button.desc span.asc {
+  display: none;
+  font-weight: bold;
+}
+
 /* Start cart list card styles */
 .cart-card {
   display: grid;
@@ -246,6 +271,10 @@ button {
   .cart-card {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
+  }
+
+  .products__sort {
+    flex-direction: row;
   }
 }
 
