@@ -85,7 +85,7 @@ export async function renderWithTemplate(
   const htmlString = await templateFn(data);
   parentElement.insertAdjacentHTML(position, htmlString);
   if (callback) {
-    callback(data);
+    callback();
   }
 }
 
@@ -108,6 +108,7 @@ export async function loadHeaderFooter() {
   const footerTemplateFn = loadTemplate("/partials/footer.html");
   const headerEl = document.querySelector("#main-header");
   const footerEl = document.querySelector("#main-footer");
-  renderWithTemplate(headerTemplateFn, headerEl);
+
+  renderWithTemplate(headerTemplateFn, headerEl, null, animationIcon); // Add a superscript number of items in the cart to the backpack icon.
   renderWithTemplate(footerTemplateFn, footerEl);
 }
