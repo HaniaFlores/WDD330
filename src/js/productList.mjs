@@ -1,9 +1,17 @@
 import { getData } from "./productData.mjs";
+import { renderListWithTemplate } from "./utils.mjs";
 
 export default async function productList(selector, category) {
   let el = document.querySelector(selector);
   const products = await getData(category);
-  renderList(products, el);
+  
+  /* List of products filter */
+  const listImages = ["880RR", "985RF", "985PR", "344YJ"];
+  const filteredProducts = products
+    .filter((tent) => listImages.includes(tent.Id));
+  
+  /* renderList(products, el); */
+  renderListWithTemplate(productCardTemplate, el, filteredProducts);
 }
 
 export function productCardTemplate(product) {
@@ -32,12 +40,4 @@ export function productCardTemplate(product) {
     >
 </li>`
   );
-}
-
-function renderList(list, el) {
-  const listImages = ["880RR", "985RF", "985PR", "344YJ"];
-  const htmlStrings = list
-    .filter((tent) => listImages.includes(tent.Id))
-    .map(productCardTemplate);
-  el.insertAdjacentHTML("afterbegin", htmlStrings.join(""));
 }

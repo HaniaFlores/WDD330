@@ -1,8 +1,7 @@
-import { getLocalStorage } from "./utils.mjs";
-import { animationIcon } from "./utils.mjs";
+import { getLocalStorage, loadHeaderFooter } from "./utils.mjs";
 
-// Add a superscript number of items in the cart to the backpack icon.
-animationIcon();
+/* Load the contents of the Header and the Footer */
+loadHeaderFooter();
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
