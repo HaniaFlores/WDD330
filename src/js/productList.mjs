@@ -21,30 +21,23 @@ export default async function productList(
 }
 
 export function productCardTemplate(product) {
+  const discountRate = 0.1; 
+  const price = product.FinalPrice;
+  const discount = price * discountRate;
+  const discountedPrice = price - discount;
+
   return (
     `<li class="product-card">
-    <a href="product_pages/index.html?product=` +
-    product.Id +
-    `" >
-        <img
-            src="` +
-    product.Image +
-    `"
-            alt="` +
-    product.Name +
-    `"
-        />
-        <h3 class="card__brand">` +
-    product.Brand.Name +
-    `</h3>
-        <h2 class="card__name">` +
-    product.NameWithoutBrand +
-    `</h2>
-        <p class="product-card__price">$` +
-    product.FinalPrice +
-    `</p></a
-    >
-</li>`
+      <a href="product_pages/index.html?product=${product.Id}">
+        <img src="${product.Image}" alt="${product.Name}" />
+        <h3 class="card__brand">${product.Brand.Name}</h3>
+        <h2 class="card__name">${product.NameWithoutBrand}</h2>
+        <p class="product-card__price">
+          <span class="original-price">$${price}</span>
+          (${(discountRate * 100).toFixed(0)}% discount off) final price $${discountedPrice.toFixed(2)} 
+        </p>
+      </a>
+    </li>`
   );
 }
 
