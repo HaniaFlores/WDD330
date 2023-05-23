@@ -222,13 +222,11 @@ button {
   align-items: center;
 }
 
-
 .original-price {
   text-decoration: line-through;
-  
+
   color: red; /* Optionally, you can change the color */
-  
-  }
+}
 
 .product-card__price {
   color: var(--dark-grey);
