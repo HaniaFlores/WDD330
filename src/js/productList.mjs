@@ -34,7 +34,7 @@ export function productCardTemplate(product) {
         <h2 class="card__name">${product.NameWithoutBrand}</h2>
         <p class="product-card__price">
           <span class="original-price">$${price}</span>
-          (${(discountRate * 100).toFixed(0)}% discount off) final price $${discountedPrice.toFixed(2)} 
+          (${(discountRate * 100).toFixed(0)}% off) $${discountedPrice.toFixed(2)} 
         </p>
       </a>
     </li>`
