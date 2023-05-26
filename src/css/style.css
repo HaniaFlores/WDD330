@@ -220,6 +220,23 @@ button {
   font-size: var(--small-font);
   /* max-height: 120px; */
   align-items: center;
+  position: relative;
+}
+
+.cart-delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #f0a868;
+  color: #303030;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem;
+  cursor: pointer;
 }
 
 .original-price {

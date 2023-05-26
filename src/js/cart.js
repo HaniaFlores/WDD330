@@ -20,7 +20,7 @@ function cartItemTemplate(item) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
-      src="${item.Image}"
+      src="${item.Images.PrimarySmall}"
       alt="${item.Name}"
     />
   </a>
@@ -30,6 +30,7 @@ function cartItemTemplate(item) {
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
+  <span data-id="${item.Id}" class="cart-delete">x</span>
 </li>`;
 
   return newItem;
@@ -53,3 +54,21 @@ function calculateTotal() {
 if (localStorage.getItem("so-cart") !== null) {
   renderCartContents();
 }
+
+function deleteCartItems() {
+  const cartElements = document.getElementsByClassName("cart-delete");
+
+  for (let i = 0; i < cartElements.length; i++) {
+    cartElements[i].addEventListener("click", function (e) {
+      const dataId = e.target.getAttribute("data-id");
+      const items = getLocalStorage("so-cart");
+      const itemsFiltered = items.filter(
+        (item, index) => index !== i || dataId !== item.Id
+      );
+      localStorage.setItem("so-cart", JSON.stringify(itemsFiltered));
+      window.location.reload();
+    });
+  }
+}
+
+deleteCartItems();
