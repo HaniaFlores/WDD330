@@ -11,7 +11,7 @@ function renderProductDetails() {
   document.getElementById("productName").innerText = product.Name;
   document.getElementById("productNameWithoutBrand").innerText =
     product.NameWithoutBrand;
-  document.getElementById("productImage").setAttribute("src", product.Image);
+  document.getElementById("productImage").setAttribute("src", product.Images.PrimaryLarge);
   document
     .getElementById("productImage")
     .setAttribute("alt", product.NameWithoutBrand);
