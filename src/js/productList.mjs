@@ -9,17 +9,15 @@ export default async function productList(
 ) {
   let el = document.querySelector(selector);
   const products = await getData(category);
+  // console.log(products);
 
   /* List of products filter */
-  const listImages = ["880RR", "985RF", "985PR", "344YJ"];
+  /* const listImages = ["880RR", "985RF", "985PR", "344YJ"];
   const filteredProducts = products.filter((tent) =>
     listImages.includes(tent.Id)
-  );
-  const orderedList = orderList(filteredProducts, orderAscDesc, idBtn);
-  /* renderList(products, el); */
+  ); */
+  const orderedList = orderList(products, orderAscDesc, idBtn);
   renderListWithTemplate(productCardTemplate, el, orderedList);
-  document.querySelector(".title").innerHTML = category;
-  document.title = "Sleep Outside | " + category;
 }
 
 export function productCardTemplate(product) {
@@ -43,17 +41,17 @@ export function productCardTemplate(product) {
   );
 }
 
-export function sortBy(option) {
+export function sortBy(option, category) {
   document.querySelector(".product-list").innerHTML = "";
   let button = document.querySelector(`#${option}`);
   if (button.classList.contains("asc")) {
     button.classList.remove("asc");
     button.classList.add("desc");
-    productList(".product-list", "tents", "asc", option);
+    productList(".product-list", category, "asc", option);
   } else {
     button.classList.remove("desc");
     button.classList.add("asc");
-    productList(".product-list", "tents", "desc", option);
+    productList(".product-list", category, "desc", option);
   }
 }
 
