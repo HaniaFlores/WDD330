@@ -100,6 +100,19 @@ function loadTemplate(path) {
   };
 }
 
+export function capitalize(str) {
+  let capitalizedString = str;
+  if (str.includes("-")) {
+    capitalizedString = str.replace(/-/g, " ");
+  }
+
+  capitalizedString = capitalizedString.replace(/(?:^|\s)\S/g, function (char) {
+    return char.toUpperCase();
+  });
+
+  return capitalizedString;
+}
+
 export async function loadHeaderFooter() {
   // header template will still be a function! But one where we have pre-supplied the argument.
   // headerTemplate and footerTemplate will be almost identical, but they will remember the path we passed in when we created them

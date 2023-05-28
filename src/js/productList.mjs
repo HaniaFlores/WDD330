@@ -1,5 +1,5 @@
 import { getData } from "./productData.mjs";
-import { renderListWithTemplate } from "./utils.mjs";
+import { renderListWithTemplate, capitalize } from "./utils.mjs";
 
 export default async function productList(
   selector,
@@ -11,15 +11,15 @@ export default async function productList(
   const products = await getData(category);
 
   /* List of products filter */
-  const listImages = ["880RR", "985RF", "985PR", "344YJ"];
+  /* const listImages = ["880RR", "985RF", "985PR", "344YJ"];
   const filteredProducts = products.filter((tent) =>
     listImages.includes(tent.Id)
-  );
-  const orderedList = orderList(filteredProducts, orderAscDesc, idBtn);
+  ); */
+  const orderedList = orderList(products, orderAscDesc, idBtn);
   /* renderList(products, el); */
   renderListWithTemplate(productCardTemplate, el, orderedList);
-  document.querySelector(".title").innerHTML = category;
-  document.title = "Sleep Outside | " + category;
+  document.querySelector(".title").innerHTML = capitalize(category);
+  document.title = "Sleep Outside | " + capitalize(category);
 }
 
 export function productCardTemplate(product) {
@@ -43,17 +43,17 @@ export function productCardTemplate(product) {
   );
 }
 
-export function sortBy(option) {
+export function sortBy(option, category) {
   document.querySelector(".product-list").innerHTML = "";
   let button = document.querySelector(`#${option}`);
   if (button.classList.contains("asc")) {
     button.classList.remove("asc");
     button.classList.add("desc");
-    productList(".product-list", "tents", "asc", option);
+    productList(".product-list", category, "asc", option);
   } else {
     button.classList.remove("desc");
     button.classList.add("asc");
-    productList(".product-list", "tents", "desc", option);
+    productList(".product-list", category, "desc", option);
   }
 }
 
