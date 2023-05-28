@@ -9,7 +9,7 @@ export default async function productList(
 ) {
   let el = document.querySelector(selector);
   const products = await getData(category);
-  console.log(products);
+  // console.log(products);
 
   /* List of products filter */
   /* const listImages = ["880RR", "985RF", "985PR", "344YJ"];
@@ -17,10 +17,7 @@ export default async function productList(
     listImages.includes(tent.Id)
   ); */
   const orderedList = orderList(products, orderAscDesc, idBtn);
-  /* renderList(products, el); */
   renderListWithTemplate(productCardTemplate, el, orderedList);
-  // document.querySelector(".title").innerHTML = capitalize(category);
-  // document.title = "Sleep Outside | " + capitalize(category);
 }
 
 export function productCardTemplate(product) {
