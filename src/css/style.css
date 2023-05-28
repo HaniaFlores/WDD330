@@ -25,6 +25,25 @@ body {
 img {
   max-width: 100%;
 }
+
+.logos {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 5%;
+}
+
+.category {
+  display: flex;
+  align-items: center;
+  padding: 5%;
+}
+
+.icon {
+  width: 100px;
+  height: 100px;
+}
+
 header {
   display: flex;
   justify-content: space-between;
