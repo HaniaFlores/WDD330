@@ -1,5 +1,5 @@
 import { getData } from "./productData.mjs";
-import { renderListWithTemplate, capitalize } from "./utils.mjs";
+import { renderListWithTemplate } from "./utils.mjs";
 
 export default async function productList(
   selector,
@@ -9,6 +9,7 @@ export default async function productList(
 ) {
   let el = document.querySelector(selector);
   const products = await getData(category);
+  console.log(products);
 
   /* List of products filter */
   /* const listImages = ["880RR", "985RF", "985PR", "344YJ"];
@@ -18,8 +19,8 @@ export default async function productList(
   const orderedList = orderList(products, orderAscDesc, idBtn);
   /* renderList(products, el); */
   renderListWithTemplate(productCardTemplate, el, orderedList);
-  document.querySelector(".title").innerHTML = capitalize(category);
-  document.title = "Sleep Outside | " + capitalize(category);
+  // document.querySelector(".title").innerHTML = capitalize(category);
+  // document.title = "Sleep Outside | " + capitalize(category);
 }
 
 export function productCardTemplate(product) {
