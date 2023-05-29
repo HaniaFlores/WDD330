@@ -2,6 +2,7 @@
 import { loadHeaderFooter } from "./utils.mjs";
 
 loadHeaderFooter();
+document.getElementById("newsletter-box").addEventListener("submit", newsletterSubscription);
 
 //productList(".product-list", "tents");
 
@@ -22,5 +23,3 @@ function newsletterSubscription(event) {
   // Not sure about what to do with the email address. Decided to return it as a string.
   return email;
 }
-
-document.getElementById("newsletter-box").addEventListener("submit", newsletterSubscription);
