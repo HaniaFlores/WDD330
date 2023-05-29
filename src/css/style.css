@@ -288,7 +288,7 @@ button {
   font-size: var(--large-font);
 }
 
-.product-card__discount {
+#product-card__discount {
   background-color: red;
   color: white;
   font-weight: bold;

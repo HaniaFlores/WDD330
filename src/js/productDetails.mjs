@@ -1,6 +1,7 @@
 import { findProductById } from "./productData.mjs";
 import { setLocalStorage, animationIcon, capitalize } from "./utils.mjs";
 let product = {};
+const discountRate = 0.1;
 
 function addToCart() {
   setLocalStorage("so-cart", product);
@@ -16,6 +17,8 @@ function renderProductDetails() {
     .getElementById("productImage")
     .setAttribute("alt", product.NameWithoutBrand);
   document.getElementById("productFinalPrice").innerText = `$${product.FinalPrice}`;
+  document.getElementById("productDiscountedPrice").innerText = `$${(product.FinalPrice - (product.FinalPrice * discountRate)).toFixed(2)}`;
+  document.getElementById("product-card__discount").innerText = `${discountRate * 100}% OFF`;
   document.getElementById("productColorName").innerText =
     product.Colors[0].ColorName;
   document.getElementById("productDescriptionHtmlSimple").innerHTML =
