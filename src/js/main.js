@@ -2,7 +2,9 @@
 import { loadHeaderFooter } from "./utils.mjs";
 
 loadHeaderFooter();
-document.getElementById("newsletter-box").addEventListener("submit", newsletterSubscription);
+document
+  .getElementById("newsletter-box")
+  .addEventListener("submit", newsletterSubscription);
 
 //productList(".product-list", "tents");
 

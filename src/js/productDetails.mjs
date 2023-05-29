@@ -1,5 +1,5 @@
 import { findProductById } from "./productData.mjs";
-import { setLocalStorage, animationIcon } from "./utils.mjs";
+import { setLocalStorage, animationIcon, capitalize } from "./utils.mjs";
 let product = {};
 
 function addToCart() {
@@ -26,6 +26,8 @@ function renderProductDetails() {
 export default async function productDetails(productId) {
   // product deatails
   product = await findProductById(productId);
+  // Title
+  document.title = "Sleep Outside | " + capitalize(product.Name);
   //GR--html-error-empty-cart-main
   renderProductDetails();
   document.getElementById("addToCart").addEventListener("click", addToCart);

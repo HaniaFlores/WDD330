@@ -414,6 +414,9 @@ button {
     opacity: 0.9;
   }
 
+  img#productImage {
+    width: 80%;
+  }
 }
 
 footer {
