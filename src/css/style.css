@@ -26,6 +26,10 @@ img {
   max-width: 100%;
 }
 
+main {
+  padding-bottom: 1em;
+}
+
 .icons {
   display: flex;
   justify-content: center;
@@ -222,7 +226,38 @@ button {
 .card__name {
   font-size: 1em;
 }
+
+.product-card a > img {
+  display: block;
+  margin: 0 auto;
+}
 /* End product list card */
+
+/* Style newsletter sign up */
+#newsletter-box {
+  padding: 0.5em;
+  text-align: center;
+  background-color: var(--tertiary-color);
+  max-width: 700px;
+  margin: auto;
+}
+#newsletter-box h2 {
+  font-size: var(--large-font);
+  color: black;
+  margin: 0;
+  margin-top: 0.5em;
+}
+#email-input {
+  width: 90vw;
+  padding: 0.3em 0.5em;
+  font-size: var(--font-base);
+  border: 2px solid var(--dark-grey);
+}
+#submit-btn {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+/* End newsletter sign up box */
 
 .product-detail {
   padding: 1em;
@@ -365,6 +400,18 @@ button {
 
   .product-grid a:hover {
     text-decoration: none;
+  }
+
+  #newsletter-box {
+    border: 1px solid var(--dark-grey);
+  }
+
+  #email-input {
+    max-width: 90%;
+  }
+
+  #email-input:hover {
+    opacity: 0.9;
   }
 
 }
