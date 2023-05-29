@@ -15,7 +15,7 @@ function renderProductDetails() {
   document
     .getElementById("productImage")
     .setAttribute("alt", product.NameWithoutBrand);
-  document.getElementById("productFinalPrice").innerText = product.FinalPrice;
+  document.getElementById("productFinalPrice").innerText = `$${product.FinalPrice}`;
   document.getElementById("productColorName").innerText =
     product.Colors[0].ColorName;
   document.getElementById("productDescriptionHtmlSimple").innerHTML =
