@@ -1,4 +1,4 @@
-import productList, {sortBy} from "./productList.mjs";
+import productList, { sortBy } from "./productList.mjs";
 import { getParam, loadHeaderFooter, capitalize } from "./utils.mjs";
 
 loadHeaderFooter();

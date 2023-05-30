@@ -1,4 +1,8 @@
-import { getLocalStorage, loadHeaderFooter, renderListWithTemplate } from "./utils.mjs";
+import {
+  getLocalStorage,
+  loadHeaderFooter,
+  renderListWithTemplate,
+} from "./utils.mjs";
 
 const cartItems = getLocalStorage("so-cart");
 
@@ -62,7 +66,10 @@ function deleteCartItems() {
 loadHeaderFooter();
 
 //renderCartContents will run if "so-cart" exist in localStorage
-if (localStorage.getItem("so-cart") !== null && Object.keys(cartItems).length > 0) {
+if (
+  localStorage.getItem("so-cart") !== null &&
+  Object.keys(cartItems).length > 0
+) {
   renderCartContents();
   //The total element will only appear when the cart is not empty.
   calculateTotal();
