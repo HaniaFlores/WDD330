@@ -1,4 +1,4 @@
-import { findProductById } from "./productData.mjs";
+import { findProductById } from "./externalServices.mjs";
 import { setLocalStorage, animationIcon, capitalize } from "./utils.mjs";
 let product = {};
 const discountRate = 0.1;
