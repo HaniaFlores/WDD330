@@ -259,6 +259,7 @@ button {
 }
 /* End newsletter sign up box */
 
+/* Start product page */
 .product-detail {
   padding: 1em;
   max-width: 500px;
@@ -273,6 +274,31 @@ button {
   margin: 0 auto;
   display: block;
 }
+
+#productFinalPrice.product-card__price {
+  font-size: var(--small-font);
+  text-decoration: line-through;
+  margin-bottom: 0;
+  color: gray;
+}
+
+#productDiscountedPrice.product-card__price {
+  margin: 0.2em 0;
+  font-weight: bold;
+  font-size: var(--large-font);
+}
+
+#product-card__discount {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  padding: 0.5em;
+  width: fit-content;
+  margin: 0;
+  border-radius: 15px;
+  font-size: var(--small-font);
+}
+/* End product page */
 
 .products__sort {
   display: flex;
