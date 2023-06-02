@@ -44,7 +44,7 @@ function calculateListTotal(list) {
   // const order = getLocalStorage("so-cart");
   list.map((product) => (total += product.FinalPrice));
 
-  const totalElement = document.querySelector(".cart-total");
+  const totalElement = document.querySelector(".list-total");
   const totalParagraph = document.createElement("p");
   totalParagraph.style.display = "inline";
   totalParagraph.style.fontWeight = "lighter";
