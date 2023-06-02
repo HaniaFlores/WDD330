@@ -1,4 +1,4 @@
-import { getData } from "./productData.mjs";
+import { getProductsByCategory } from "./externalServices.mjs";
 import { renderListWithTemplate } from "./utils.mjs";
 
 export default async function productList(
@@ -8,7 +8,7 @@ export default async function productList(
   idBtn = "sort-by-name"
 ) {
   let el = document.querySelector(selector);
-  const products = await getData(category);
+  const products = await getProductsByCategory(category);
   // console.log(products);
 
   /* List of products filter */
