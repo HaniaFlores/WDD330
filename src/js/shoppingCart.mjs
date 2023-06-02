@@ -12,7 +12,7 @@ export default function renderCartContents() {
     
   //The total element will only appear when the cart is not empty.
     calculateListTotal(cartItems);
-    document.querySelector(".hide").style.display = "block";
+    document.querySelector(".hide").style.display = "flex";
   }
 
   deleteCartItems(cartItems);

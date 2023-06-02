@@ -83,7 +83,7 @@ const checkoutProcess = {
     const json = formDataToJSON(form);
     // build the data object from the calculated fields, the items in the cart, and the information entered into the form
     // add totals, and item details
-    json.orderDate = new Date();
+    json.orderDate = new Date().toISOString();
     json.orderTotal = this.orderTotal;
     json.tax = this.tax;
     json.shipping = this.shipping;

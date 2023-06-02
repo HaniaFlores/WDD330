@@ -395,13 +395,11 @@ button {
 }
 
 .list-total {
-  display: inline;
   font-weight: bold;
   text-align: right;
 }
 
 .cart-footer {
-  display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 0.5em;
