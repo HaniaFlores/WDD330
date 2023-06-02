@@ -477,6 +477,7 @@ fieldset {
   .cart-card {
     font-size: inherit;
     grid-template-columns: 150px auto 15%;
+    width: 100%;
   }
 
   .products__sort {
