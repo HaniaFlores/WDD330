@@ -22,7 +22,7 @@ export default async function productList(
 
 export function productCardTemplate(product) {
   const discountRate = 0.1; 
-  const price = product.FinalPrice;
+  const price = product.ListPrice ;
   const discount = price * discountRate;
   const discountedPrice = price - discount;
 

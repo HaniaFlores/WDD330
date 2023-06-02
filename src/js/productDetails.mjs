@@ -16,8 +16,8 @@ function renderProductDetails() {
   document
     .getElementById("productImage")
     .setAttribute("alt", product.NameWithoutBrand);
-  document.getElementById("productFinalPrice").innerText = `$${product.FinalPrice}`;
-  document.getElementById("productDiscountedPrice").innerText = `$${(product.FinalPrice - (product.FinalPrice * discountRate)).toFixed(2)}`;
+  document.getElementById("productFinalPrice").innerText = `$${product.ListPrice}`;
+  document.getElementById("productDiscountedPrice").innerText = `$${(product.ListPrice - (product.ListPrice * discountRate)).toFixed(2)}`;
   document.getElementById("product-card__discount").innerText = `${discountRate * 100}% OFF`;
   document.getElementById("productColorName").innerText =
     product.Colors[0].ColorName;
