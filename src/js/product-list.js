@@ -1,4 +1,4 @@
-import productList, { sortBy } from "./productList.mjs";
+import productList, { quickView, sortBy } from "./productList.mjs";
 import { getParam, loadHeaderFooter, capitalize } from "./utils.mjs";
 
 loadHeaderFooter();
@@ -17,3 +17,6 @@ document
 document
   .querySelector("#sort-by-price")
   .addEventListener("click", () => sortBy("sort-by-price", category));
+
+// Modal to view an item
+quickView();
