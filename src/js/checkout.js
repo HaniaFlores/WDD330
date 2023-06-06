@@ -23,5 +23,5 @@ document.forms["checkout"].addEventListener("submit", (e) => {
 document.querySelector("#checkoutSubmit").addEventListener("click", (e) => {
   e.preventDefault();
 
-   checkoutProcess.checkout(document.forms["checkout"]);
+  checkoutProcess.checkout(document.forms["checkout"]);
 });
