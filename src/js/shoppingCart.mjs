@@ -24,6 +24,7 @@ function cartItemTemplate(item) {
     <img
       src="${item.Images.PrimarySmall}"
       alt="${item.Name}"
+      loading="lazy"
     />
   </a>
   <a href="/product_pages/index.html?product=${item.Id}">

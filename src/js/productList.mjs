@@ -29,7 +29,7 @@ export function productCardTemplate(product) {
 
   return `<li class="product-card">
       <a href="/product_pages/index.html?product=${product.Id}">
-        <img src="${product.Images.PrimaryMedium}" alt="${product.Name}" />
+        <img src="${product.Images.PrimaryMedium}" alt="${product.Name}" loading="lazy" />
         <h3 class="card__brand">${product.Brand.Name}</h3>
         <h2 class="card__name">${product.NameWithoutBrand}</h2>
         <p class="product-card__price">
@@ -99,7 +99,7 @@ export function quickView() {
         <h3 id="productName">${product.Name}</h3>
         <h2 class="divider" id="productNameWithoutBrand">${product.NameWithoutBrand}</h2>
         <div class="productImage-container divider">
-          <img id="productImage" src="${product.Images.PrimaryLarge}" alt="${product.Name}" />
+          <img id="productImage" src="${product.Images.PrimaryLarge}" alt="${product.Name}" loading="lazy" />
         </div>
         <p class="product__color" id="productColorName">${product.Colors[0].ColorName}</p>
         <p class="product__description" id="productDescriptionHtmlSimple">${product.DescriptionHtmlSimple}</p>
