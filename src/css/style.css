@@ -449,11 +449,20 @@ legend {
   color: #cc2020;
 }
 
+.checkout h2 {
+  margin-bottom: 0;
+}
+
 fieldset {
-  margin: 2rem 0;
+  margin: 1em 0;
   border: 1px solid var(--secondary-color);
   border-radius: 10px;
   padding: 0.5rem 2%;
+}
+
+::placeholder {
+  font-size: var(--small-font);
+  color: #999999;
 }
 
 .checkout-summary {
@@ -463,6 +472,7 @@ fieldset {
 .checkout-summary > ul {
   padding-left: 0;
   list-style-type: none;
+  margin-top: 0;
 }
 .checkout-summary li {
   display: flex;
@@ -474,51 +484,25 @@ fieldset {
   font-size: 1em;
 }
 
-@media screen and (min-width: 500px) {
-  body {
-    max-width: 1080px;
-    margin: auto;
-  }
-  .mission {
-    font-size: 1.2em;
-  }
-  .cart-card {
-    font-size: inherit;
-    grid-template-columns: 150px auto 15%;
-    width: 100%;
-  }
+.checkout-summary label {
+  padding-top: 0;
+}
 
-  .products__sort {
-    flex-direction: row;
-  }
+/* alert styles */
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em;
+  background-color: var(--primary-color);
+  border: 1px solid darkorange;
+}
+.alert > p {
+  margin: 0;
+}
 
-  .product-grid > li {
-    transition: transform 0.3s ease;
-  }
-
-  .product-grid > li:hover {
-    transform: scale(1.2);
-  }
-
-  .product-grid a:hover {
-    text-decoration: none;
-  }
-
-  #newsletter-box {
-    border: 1px solid var(--dark-grey);
-  }
-
-  #email-input {
-    max-width: 90%;
-  }
-
-  #email-input:hover {
-    opacity: 0.9;
-  }
-
-  img#productImage {
-    width: 80%;
-  }
+section.success-page {
+  padding: 0.5em;
 }
 
 /* The Modal (background) */
@@ -572,15 +556,49 @@ footer {
   cursor: pointer;
 }
 
-/* alert styles */
-.alert {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5em;
-  background-color: var(--primary-color);
-  border: 1px solid darkorange;
-}
-.alert > p {
-  margin: 0;
+@media screen and (min-width: 500px) {
+  body {
+    max-width: 1080px;
+    margin: auto;
+  }
+  .mission {
+    font-size: 1.2em;
+  }
+  .cart-card {
+    font-size: inherit;
+    grid-template-columns: 150px auto 15%;
+    width: 100%;
+  }
+
+  .products__sort {
+    flex-direction: row;
+  }
+
+  .product-grid > li {
+    transition: transform 0.3s ease;
+  }
+
+  .product-grid > li:hover {
+    transform: scale(1.2);
+  }
+
+  .product-grid a:hover {
+    text-decoration: none;
+  }
+
+  #newsletter-box {
+    border: 1px solid var(--dark-grey);
+  }
+
+  #email-input {
+    max-width: 90%;
+  }
+
+  #email-input:hover {
+    opacity: 0.9;
+  }
+
+  img#productImage {
+    width: 80%;
+  }
 }
