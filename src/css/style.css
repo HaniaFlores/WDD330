@@ -449,11 +449,20 @@ legend {
   color: #cc2020;
 }
 
+.checkout h2 {
+  margin-bottom: 0;
+}
+
 fieldset {
-  margin: 2rem 0;
+  margin: 1em 0;
   border: 1px solid var(--secondary-color);
   border-radius: 10px;
   padding: 0.5rem 2%;
+}
+
+::placeholder {
+  font-size: var(--small-font);
+  color: #999999;
 }
 
 .checkout-summary {
@@ -463,6 +472,7 @@ fieldset {
 .checkout-summary > ul {
   padding-left: 0;
   list-style-type: none;
+  margin-top: 0;
 }
 .checkout-summary li {
   display: flex;
@@ -472,6 +482,27 @@ fieldset {
 .checkout-summary input {
   width: 25%;
   font-size: 1em;
+}
+
+.checkout-summary label {
+  padding-top: 0;
+}
+
+/* alert styles */
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em;
+  background-color: var(--primary-color);
+  border: 1px solid darkorange;
+}
+.alert > p {
+  margin: 0;
+}
+
+section.success-page {
+  padding: 0.5em;
 }
 
 /* The Modal (background) */
@@ -523,19 +554,6 @@ footer {
   color: black;
   text-decoration: none;
   cursor: pointer;
-}
-
-/* alert styles */
-.alert {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5em;
-  background-color: var(--primary-color);
-  border: 1px solid darkorange;
-}
-.alert > p {
-  margin: 0;
 }
 
 @media screen and (min-width: 500px) {

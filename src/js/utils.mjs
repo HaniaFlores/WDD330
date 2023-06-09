@@ -11,14 +11,15 @@ export function getLocalStorage(key) {
 }
 // save data to local storage
 export function setLocalStorage(key, data) {
-  localStorage.setItem(
-    key,
-    JSON.stringify(
-      getLocalStorage("so-cart")
-        ? [...getLocalStorage("so-cart"), data]
-        : [data]
-    )
-  );
+  // localStorage.setItem(
+  //   key,
+  //   JSON.stringify(
+  //     getLocalStorage("so-cart")
+  //       ? [...getLocalStorage("so-cart"), data]
+  //       : [data]
+  //   )
+  // );
+  localStorage.setItem(key, JSON.stringify(data));
 }
 
 // set a listener for both touchend and click

@@ -1,11 +1,23 @@
 import { findProductById } from "./externalServices.mjs";
-import { setLocalStorage, animationIcon, capitalize } from "./utils.mjs";
+import { setLocalStorage, animationIcon, capitalize, getLocalStorage, alertMessage } from "./utils.mjs";
 let product = {};
 const discountRate = 0.1;
 
+// function addToCart() {
+//   setLocalStorage("so-cart", product);
+//   animationIcon();
+// }
 function addToCart() {
-  setLocalStorage("so-cart", product);
+  let cartContents = getLocalStorage("so-cart");
+  //check to see if there was anything there
+  if (!cartContents) {
+    cartContents = [];
+  }
+  // then add the current product to the list
+  cartContents.push(product);
+  setLocalStorage("so-cart", cartContents);
   animationIcon();
+  alertMessage(`${product.NameWithoutBrand} added to cart!`);
 }
 
 function renderProductDetails() {
