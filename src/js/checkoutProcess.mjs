@@ -1,4 +1,9 @@
-import { getLocalStorage } from "./utils.mjs";
+import {
+  getLocalStorage,
+  alertMessage,
+  removeAllAlerts,
+  setLocalStorage,
+} from "./utils.mjs";
 import { checkout } from "./externalServices.mjs";
 
 // takes a form element and returns an object where the key is the "name" of the form input.
@@ -15,7 +20,7 @@ function formDataToJSON(formElement) {
 
 // takes the items currently stored in the cart (localstorage) and returns them in a simplified form.
 function packageItems(items) {
-// convert the list of products from localStorage to the simpler form required for the checkout process. Array.map would be perfect for this.
+  // convert the list of products from localStorage to the simpler form required for the checkout process. Array.map would be perfect for this.
   const simplifiedItems = items.map((item) => {
     console.log("package items", item);
     return {
@@ -29,20 +34,20 @@ function packageItems(items) {
 }
 
 const checkoutProcess = {
-    key: "",
-    outputSelector: "",
-    list: [],
-    itemTotal: 0,
-    shipping: 0,
-    tax: 0,
-    orderTotal: 0,
-    init: function (key, outputSelector) {
-        this.key = key;
-        this.outputSelector = outputSelector;
-        this.list = getLocalStorage(key);
-        this.calculateItemSummary();
-    },
-  calculateItemSummary: function() {
+  key: "",
+  outputSelector: "",
+  list: [],
+  itemTotal: 0,
+  shipping: 0,
+  tax: 0,
+  orderTotal: 0,
+  init: function (key, outputSelector) {
+    this.key = key;
+    this.outputSelector = outputSelector;
+    this.list = getLocalStorage(key);
+    this.calculateItemSummary();
+  },
+  calculateItemSummary: function () {
     // calculate and display the total amount of the items in the cart, and the number of items.
     const summaryElement = document.querySelector(
       this.outputSelector + " #cartTotal"
@@ -56,7 +61,7 @@ const checkoutProcess = {
     this.itemTotal = amounts.reduce((sum, item) => sum + item);
     summaryElement.innerText = "$" + this.itemTotal;
   },
-  calculateOrdertotal: function() {
+  calculateOrdertotal: function () {
     // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
     this.shipping = 10 + (this.list.length - 1) * 2;
     this.tax = (this.itemTotal * 0.06).toFixed(2);
@@ -68,7 +73,7 @@ const checkoutProcess = {
     // display the totals.
     this.displayOrderTotals();
   },
-  displayOrderTotals: function() {
+  displayOrderTotals: function () {
     // once the totals are all calculated display them in the order summary page
     const shipping = document.querySelector(this.outputSelector + " #shipping");
     const tax = document.querySelector(this.outputSelector + " #tax");
@@ -93,10 +98,15 @@ const checkoutProcess = {
     try {
       const res = await checkout(json);
       console.log(res);
+      setLocalStorage("so-cart", []);
+      location.assign("/checkout/success.html");
     } catch (err) {
+      removeAllAlerts();
+      for (let message in err.message) {
+        alertMessage(err.message[message]);
+      }
       console.log(err);
     }
   },
-  
-}
+};
 export default checkoutProcess;
