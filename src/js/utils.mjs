@@ -1,3 +1,6 @@
+import { findProductById, getProductsByCategory } from "./externalServices.mjs";
+import productList from "./productList.mjs";
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -153,4 +156,40 @@ export function alertMessage(message, scroll = true) {
 export function removeAllAlerts() {
   const alerts = document.querySelectorAll(".alert");
   alerts.forEach((alert) => document.querySelector("main").removeChild(alert));
+}
+
+export function breadcrumbs(page) {
+  const breadcrumbList = document.getElementById("breadcrumb__list");
+  switch (page) {
+    case "product_page": {
+      const productId = getParam("product");
+      findProductById(productId).then((data) => {
+        const breadcrumbItem = `<li class="breadcrumb__item"><a href="../product-list/index.html?category=${
+          data.Category
+        }">${data.Category.toUpperCase()}</a></li><li class="breadcrumb__item"><a href="../product_pages/index.html?product=${
+          data.Id
+        }">Product - ${data.Id}</a></li>`;
+        breadcrumbList.insertAdjacentHTML("beforeend", breadcrumbItem);
+      });
+      break;
+    }
+    case "cart": {
+      const cartStorage = getLocalStorage("so-cart")?.length;
+      const breadcrumbItem = `<li class="breadcrumb__item"><a href="../cart/index.html">CART (${cartStorage ?? 0})</a></li>`;
+      breadcrumbList.insertAdjacentHTML("beforeend", breadcrumbItem);
+      break;
+    }
+    case "product_list": {
+      const category = getParam("category");
+      productList(".product-list", category);
+      getProductsByCategory(category).then((data) => {
+        const length = data.length;
+        const breadcrumbItem = `<li class="breadcrumb__item"><a href="../product-list/index.html?category=${category}">${category.toUpperCase()} (${length})</a></li>`;
+        breadcrumbList.insertAdjacentHTML("beforeend", breadcrumbItem);
+      });
+      break;
+    }
+    default:
+      break;
+  }
 }

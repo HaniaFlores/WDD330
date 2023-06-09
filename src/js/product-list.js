@@ -1,5 +1,10 @@
 import productList, { quickView, sortBy } from "./productList.mjs";
-import { getParam, loadHeaderFooter, capitalize } from "./utils.mjs";
+import {
+  getParam,
+  loadHeaderFooter,
+  capitalize,
+  breadcrumbs,
+} from "./utils.mjs";
 
 loadHeaderFooter();
 const category = getParam("category");
@@ -20,3 +25,5 @@ document
 
 // Modal to view an item
 quickView();
+
+breadcrumbs("product_list");

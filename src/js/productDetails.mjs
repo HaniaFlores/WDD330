@@ -1,10 +1,11 @@
 import { findProductById } from "./externalServices.mjs";
-import { setLocalStorage, animationIcon, capitalize } from "./utils.mjs";
+import { setLocalStorage, animationIcon, capitalize, alertMessage, removeAllAlerts } from "./utils.mjs";
 let product = {};
 const discountRate = 0.1;
 
 function addToCart() {
   setLocalStorage("so-cart", product);
+  alertMessage("Item added succesfully!")
   animationIcon();
 }
 
