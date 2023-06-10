@@ -1,5 +1,7 @@
 import {renderListWithTemplate, getLocalStorage } from "./utils.mjs";
 
+const discountRate = 0.1;
+
 export default function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   //renderListWithTemplate will run if "so-cart" exist in localStorage
@@ -11,7 +13,7 @@ export default function renderCartContents() {
     renderListWithTemplate(cartItemTemplate, el, cartItems);
     
   //The total element will only appear when the cart is not empty.
-    calculateListTotal(cartItems);
+    calculateListTotal(cartItems, discountRate);
     document.querySelector(".hide").style.display = "flex";
   }
 
@@ -32,7 +34,10 @@ function cartItemTemplate(item) {
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: 1</p>
-  <p class="cart-card__price">$${item.FinalPrice}</p>
+  <div class="price-div">
+    <p class="original-price">$${item.ListPrice}</p>
+    <p class="discounted-price">$${(item.ListPrice - (item.ListPrice * discountRate)).toFixed(2)}</p>
+  </div>
   <span data-id="${item.Id}" class="cart-delete">x</span>
 </li>`;
 
@@ -40,10 +45,10 @@ function cartItemTemplate(item) {
 }
 
 // Total in cart
-function calculateListTotal(list) {
+function calculateListTotal(list, discount) {
   let total = 0;
   // const order = getLocalStorage("so-cart");
-  list.map((product) => (total += product.FinalPrice));
+  list.map((product) => (total += (product.FinalPrice * (1 - discount))));
 
   const totalElement = document.querySelector(".list-total");
   const totalParagraph = document.createElement("p");

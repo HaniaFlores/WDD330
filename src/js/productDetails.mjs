@@ -2,7 +2,6 @@ import { findProductById } from "./externalServices.mjs";
 import { setLocalStorage, animationIcon, capitalize, alertMessage, getLocalStorage } from "./utils.mjs";
 let product = {};
 const discountRate = 0.1;
-
 // function addToCart() {
 //   setLocalStorage("so-cart", product);
 //   animationIcon();
