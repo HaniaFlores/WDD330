@@ -28,21 +28,26 @@ export function productCardTemplate(product) {
   const discountedPrice = price - discount;
 
   return `<li class="product-card">
-      <a href="/product_pages/index.html?product=${product.Id}">
-        <img src="${product.Images.PrimaryMedium}" alt="${product.Name}" loading="lazy" />
-        <h3 class="card__brand">${product.Brand.Name}</h3>
-        <h2 class="card__name">${product.NameWithoutBrand}</h2>
-        <p class="product-card__price">
-          <span class="original-price">$${price}</span>
-          (${(discountRate * 100).toFixed(0)}% off) $${discountedPrice.toFixed(
-    2
-  )} 
-        </p>
-      </a>
-      <button class="product-cart__button" data-id="${
-        product.Id
-      }">Quick View</button>
-    </li>`;
+  <a href="/product_pages/index.html?product=${product.Id}">
+    <div class="image-container">
+      <img src="${product.Images.PrimaryMedium}" alt="${product.Name}" loading="lazy" />
+      <div class="prices-container">
+        <div class="discount-div">
+          <p class="discount-percentage">${(discountRate * 100).toFixed(0)}% off</p>
+        </div>
+        <div class="price-div">
+          <p class="original-price">$${price}</p>
+          <p class="discounted-price">$${discountedPrice.toFixed(2)}</p>
+        </div>
+      </div>
+    </div>
+    <h3 class="card__brand">${product.Brand.Name}</h3>
+    <h2 class="card__name">${product.NameWithoutBrand}</h2>
+  </a>
+  <button class="product-cart__button" data-id="${product.Id}">Quick View</button>
+</li>
+
+`;
 }
 
 export function sortBy(option, category) {
