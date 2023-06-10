@@ -23,9 +23,11 @@ export default async function productList(
 
 export function productCardTemplate(product) {
   const discountRate = 0.1;
-  const price = product.ListPrice;
-  const discount = price * discountRate;
-  const discountedPrice = price - discount;
+  // product.FinalPrice = (product.ListPrice - (product.ListPrice * discountRate)).toFixed(2)
+  // const price = product.ListPrice;
+  // const discount = price * discountRate;
+  // const discountedPrice = price - discount;
+  // console.log(product);
 
   return `<li class="product-card">
   <a href="/product_pages/index.html?product=${product.Id}">
@@ -33,11 +35,11 @@ export function productCardTemplate(product) {
       <img src="${product.Images.PrimaryMedium}" alt="${product.Name}" loading="lazy" />
       <div class="prices-container">
         <div class="discount-div">
-          <p class="discount-percentage">${(discountRate * 100).toFixed(0)}% off</p>
+          <p class="discount-percentage">${(discountRate * 100).toFixed(0)}% OFF</p>
         </div>
         <div class="price-div">
-          <p class="original-price">$${price}</p>
-          <p class="discounted-price">$${discountedPrice.toFixed(2)}</p>
+          <p class="original-price">$${product.ListPrice}</p>
+          <p class="discounted-price">$${(product.ListPrice - (product.ListPrice * discountRate)).toFixed(2)}</p>
         </div>
       </div>
     </div>
@@ -46,7 +48,6 @@ export function productCardTemplate(product) {
   </a>
   <button class="product-cart__button" data-id="${product.Id}">Quick View</button>
 </li>
-
 `;
 }
 
