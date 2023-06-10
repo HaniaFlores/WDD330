@@ -43,13 +43,34 @@ export function getParam(param) {
 }
 
 // Animation of icon when an item or tent is added by Fernando
+// export function animationIcon() {
+//   let cartStorage = getLocalStorage("so-cart");
+//   if (!cartStorage) {
+//     cartStorage = 0;
+//   } else {
+//     cartStorage = cartStorage.length;
+//   }
+//   const cart = document.querySelector(".cart");
+//   if (!cart.querySelector(".cart__items")) {
+//     const cartItems = document.createElement("div");
+//     cartItems.classList.add("cart__items");
+//     cartItems.textContent = cartStorage;
+//     cart.append(cartItems);
+//   } else {
+//     const cartItems = cart.querySelector(".cart__items");
+//     cartItems.textContent = cartStorage;
+//   }
+// }
+
 export function animationIcon() {
   let cartStorage = getLocalStorage("so-cart");
   if (!cartStorage) {
     cartStorage = 0;
   } else {
-    cartStorage = cartStorage.length;
+    // Calculate the total quantity by summing the quantity of each product
+    cartStorage = cartStorage.reduce((total, product) => total + product.quantity, 0);
   }
+
   const cart = document.querySelector(".cart");
   if (!cart.querySelector(".cart__items")) {
     const cartItems = document.createElement("div");
@@ -61,6 +82,7 @@ export function animationIcon() {
     cartItems.textContent = cartStorage;
   }
 }
+
 
 export function renderListWithTemplate(
   templateFn,

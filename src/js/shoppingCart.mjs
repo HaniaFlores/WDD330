@@ -11,6 +11,7 @@ export default function renderCartContents() {
   ) {
     const el = document.querySelector(".product-list");
     renderListWithTemplate(cartItemTemplate, el, cartItems);
+    // console.log(cartItems);
     
   //The total element will only appear when the cart is not empty.
     calculateListTotal(cartItems, discountRate);
@@ -33,7 +34,7 @@ function cartItemTemplate(item) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: 1</p>
+  <p class="cart-card__quantity">qty: ${item.Quantity}</p>
   <div class="price-div">
     <p class="original-price">$${item.ListPrice}</p>
     <p class="discounted-price">$${(item.ListPrice - (item.ListPrice * discountRate)).toFixed(2)}</p>

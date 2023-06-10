@@ -8,12 +8,21 @@ const discountRate = 0.1;
 // }
 function addToCart() {
   let cartContents = getLocalStorage("so-cart");
+  product.Quantity = 1;
   //check to see if there was anything there
   if (!cartContents) {
     cartContents = [];
   }
+
+  const duplicateProduct = cartContents.find(item => item.Id === product.Id);
+  if (duplicateProduct) {
+    product.Quantity += 1;
+  } else {
+    cartContents.push(product);
+  }
   // then add the current product to the list
-  cartContents.push(product);
+  // cartContents.push(product);
+  console.log(product);
   setLocalStorage("so-cart", cartContents);
   animationIcon();
   alertMessage("Item added succesfully!");
