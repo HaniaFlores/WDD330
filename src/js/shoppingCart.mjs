@@ -45,7 +45,7 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
-// Total in cart
+/* // Total in cart
 function calculateListTotal(list, discount) {
   let total = 0;
   // const order = getLocalStorage("so-cart");
@@ -57,7 +57,21 @@ function calculateListTotal(list, discount) {
   totalParagraph.style.fontWeight = "lighter";
   totalParagraph.innerHTML = `$${total.toFixed(2)}`;
   totalElement.appendChild(totalParagraph);
+} */
+function calculateListTotal(list, discount) {
+  let total = 0;
+  list.forEach((product) => {
+    total += product.FinalPrice * product.Quantity * (1 - discount);
+  });
+
+  const totalElement = document.querySelector(".list-total");
+  const totalParagraph = document.createElement("p");
+  totalParagraph.style.display = "inline";
+  totalParagraph.style.fontWeight = "lighter";
+  totalParagraph.innerHTML = `$${total.toFixed(2)}`;
+  totalElement.appendChild(totalParagraph);
 }
+
 
 function deleteCartItems(list) {
   const cartElements = document.getElementsByClassName("cart-delete");

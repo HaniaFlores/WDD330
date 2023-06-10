@@ -43,34 +43,27 @@ export function getParam(param) {
 }
 
 // Animation of icon when an item or tent is added by Fernando
-// export function animationIcon() {
-//   let cartStorage = getLocalStorage("so-cart");
-//   if (!cartStorage) {
-//     cartStorage = 0;
-//   } else {
-//     cartStorage = cartStorage.length;
-//   }
-//   const cart = document.querySelector(".cart");
-//   if (!cart.querySelector(".cart__items")) {
-//     const cartItems = document.createElement("div");
-//     cartItems.classList.add("cart__items");
-//     cartItems.textContent = cartStorage;
-//     cart.append(cartItems);
-//   } else {
-//     const cartItems = cart.querySelector(".cart__items");
-//     cartItems.textContent = cartStorage;
-//   }
-// }
-
-export function animationIcon() {
+/* export function animationIcon() {
   let cartStorage = getLocalStorage("so-cart");
   if (!cartStorage) {
     cartStorage = 0;
   } else {
-    // Calculate the total quantity by summing the quantity of each product
-    cartStorage = cartStorage.reduce((total, product) => total + product.quantity, 0);
+    cartStorage = cartStorage.length;
   }
+  const cart = document.querySelector(".cart");
+  if (!cart.querySelector(".cart__items")) {
+    const cartItems = document.createElement("div");
+    cartItems.classList.add("cart__items");
+    cartItems.textContent = cartStorage;
+    cart.append(cartItems);
+  } else {
+    const cartItems = cart.querySelector(".cart__items");
+    cartItems.textContent = cartStorage;
+  }
+} */
 
+export function animationIcon() {
+  let cartStorage = getNumberInCart();
   const cart = document.querySelector(".cart");
   if (!cart.querySelector(".cart__items")) {
     const cartItems = document.createElement("div");
@@ -198,7 +191,7 @@ export function breadcrumbs(page) {
       break;
     }
     case "cart": {
-      const cartStorage = getLocalStorage("so-cart")?.length;
+      const cartStorage = getNumberInCart();
       const breadcrumbItem = `<li class="breadcrumb__item"><a href="../cart/index.html">CART (${cartStorage ?? 0})</a></li>`;
       breadcrumbList.insertAdjacentHTML("beforeend", breadcrumbItem);
       break;
@@ -216,4 +209,15 @@ export function breadcrumbs(page) {
     default:
       break;
   }
+}
+
+// Returns the number of items in localstorage (duplicate items included)
+function getNumberInCart() {
+  let cartStorage = getLocalStorage("so-cart");
+  if (!cartStorage) {
+    cartStorage = 0;
+  } else {
+    cartStorage = cartStorage.reduce((total, item) => total + item.Quantity, 0);
+  }
+  return cartStorage;
 }

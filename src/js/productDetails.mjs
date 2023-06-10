@@ -2,11 +2,8 @@ import { findProductById } from "./externalServices.mjs";
 import { setLocalStorage, animationIcon, capitalize, alertMessage, getLocalStorage } from "./utils.mjs";
 let product = {};
 const discountRate = 0.1;
-// function addToCart() {
-//   setLocalStorage("so-cart", product);
-//   animationIcon();
-// }
-function addToCart() {
+
+/* function addToCart() {
   let cartContents = getLocalStorage("so-cart");
   product.Quantity = 1;
   //check to see if there was anything there
@@ -26,6 +23,29 @@ function addToCart() {
   setLocalStorage("so-cart", cartContents);
   animationIcon();
   alertMessage("Item added succesfully!");
+} */
+
+function addToCart() {
+  let cartContents = getLocalStorage("so-cart");
+  product.Quantity = 1;
+
+  // Check to see if there was anything in the cart
+  if (!cartContents) {
+    cartContents = [];
+  }
+
+  const existingProductIndex = cartContents.findIndex(item => item.Id === product.Id);
+  if (existingProductIndex !== -1) {
+    // Product already exists in the cart
+    cartContents[existingProductIndex].Quantity += 1;
+  } else {
+    // Product is new, add it to the cart
+    cartContents.push(product);
+  }
+
+  setLocalStorage("so-cart", cartContents);
+  animationIcon();
+  alertMessage("Item added successfully!");
 }
 
 function renderProductDetails() {
