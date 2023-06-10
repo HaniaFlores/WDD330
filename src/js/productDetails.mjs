@@ -57,7 +57,7 @@ function renderProductDetails() {
   imgEl.setAttribute("alt", product.NameWithoutBrand);
   imgEl.setAttribute("loading", "lazy");
   document.getElementById("productFinalPrice").innerText = `$${product.ListPrice}`;
-  document.getElementById("productDiscountedPrice").innerText = `$${(product.ListPrice - (product.ListPrice * discountRate)).toFixed(2)}`;
+  document.getElementById("productDiscountedPrice").innerText = `$${product.FinalPrice.toFixed(2)}`;
   document.getElementById("product-card__discount").innerText = `${discountRate * 100}% OFF`;
   document.getElementById("productColorName").innerText =
     product.Colors[0].ColorName;
@@ -69,6 +69,9 @@ function renderProductDetails() {
 export default async function productDetails(productId) {
   // product deatails
   product = await findProductById(productId);
+  //update the FinalPrice of the product before passing it as an argument
+  product.FinalPrice = parseFloat(product.FinalPrice * (1 - discountRate));
+  console.log("product", product);
   // Title
   document.title = "Sleep Outside | " + capitalize(product.Name);
   //GR--html-error-empty-cart-main

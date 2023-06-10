@@ -6,7 +6,7 @@ import {
 } from "./utils.mjs";
 import { checkout } from "./externalServices.mjs";
 
-const discountRate = 0.1;
+// const discountRate = 0.1;
 
 // takes a form element and returns an object where the key is the "name" of the form input.
 function formDataToJSON(formElement) {
@@ -63,8 +63,7 @@ const checkoutProcess = {
     this.itemTotal = amounts.reduce((sum, item) => sum + item);
     summaryElement.innerText = "$" + this.itemTotal.toFixed(2);
     console.log("item", this.list) */
-    const totalPrice = this.list.reduce((sum, item) => sum + (item.FinalPrice * item.Quantity), 0);
-    this.itemTotal = totalPrice - (totalPrice * discountRate);
+    this.itemTotal = this.list.reduce((sum, item) => sum + (item.FinalPrice * item.Quantity), 0);
     summaryElement.innerText = "$" + this.itemTotal.toFixed(2);
   },
   calculateOrdertotal: function () {

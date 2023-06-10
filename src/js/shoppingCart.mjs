@@ -1,7 +1,5 @@
 import {renderListWithTemplate, getLocalStorage } from "./utils.mjs";
 
-const discountRate = 0.1;
-
 export default function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   //renderListWithTemplate will run if "so-cart" exist in localStorage
@@ -14,7 +12,7 @@ export default function renderCartContents() {
     // console.log(cartItems);
     
   //The total element will only appear when the cart is not empty.
-    calculateListTotal(cartItems, discountRate);
+    calculateListTotal(cartItems);
     document.querySelector(".hide").style.display = "flex";
   }
 
@@ -37,7 +35,7 @@ function cartItemTemplate(item) {
   <p class="cart-card__quantity">qty: ${item.Quantity}</p>
   <div class="price-div">
     <p class="original-price">$${item.ListPrice}</p>
-    <p class="discounted-price">$${(item.ListPrice - (item.ListPrice * discountRate)).toFixed(2)}</p>
+    <p class="discounted-price">$${item.FinalPrice.toFixed(2)}</p>
   </div>
   <span data-id="${item.Id}" class="cart-delete">x</span>
 </li>`;
@@ -58,10 +56,10 @@ function calculateListTotal(list, discount) {
   totalParagraph.innerHTML = `$${total.toFixed(2)}`;
   totalElement.appendChild(totalParagraph);
 } */
-function calculateListTotal(list, discount) {
+function calculateListTotal(list) {
   let total = 0;
   list.forEach((product) => {
-    total += product.FinalPrice * product.Quantity * (1 - discount);
+    total += product.FinalPrice * product.Quantity;
   });
 
   const totalElement = document.querySelector(".list-total");
