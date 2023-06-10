@@ -1,7 +1,5 @@
 import {renderListWithTemplate, getLocalStorage } from "./utils.mjs";
 
-const discountRate = 0.1;
-
 export default function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   //renderListWithTemplate will run if "so-cart" exist in localStorage
@@ -11,9 +9,10 @@ export default function renderCartContents() {
   ) {
     const el = document.querySelector(".product-list");
     renderListWithTemplate(cartItemTemplate, el, cartItems);
+    // console.log(cartItems);
     
   //The total element will only appear when the cart is not empty.
-    calculateListTotal(cartItems, discountRate);
+    calculateListTotal(cartItems);
     document.querySelector(".hide").style.display = "flex";
   }
 
@@ -33,10 +32,10 @@ function cartItemTemplate(item) {
     <h2 class="card__name">${item.Name}</h2>
   </a>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
-  <p class="cart-card__quantity">qty: 1</p>
+  <p class="cart-card__quantity">qty: ${item.Quantity}</p>
   <div class="price-div">
     <p class="original-price">$${item.ListPrice}</p>
-    <p class="discounted-price">$${(item.ListPrice - (item.ListPrice * discountRate)).toFixed(2)}</p>
+    <p class="discounted-price">$${item.FinalPrice.toFixed(2)}</p>
   </div>
   <span data-id="${item.Id}" class="cart-delete">x</span>
 </li>`;
@@ -44,7 +43,7 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
-// Total in cart
+/* // Total in cart
 function calculateListTotal(list, discount) {
   let total = 0;
   // const order = getLocalStorage("so-cart");
@@ -56,7 +55,21 @@ function calculateListTotal(list, discount) {
   totalParagraph.style.fontWeight = "lighter";
   totalParagraph.innerHTML = `$${total.toFixed(2)}`;
   totalElement.appendChild(totalParagraph);
+} */
+function calculateListTotal(list) {
+  let total = 0;
+  list.forEach((product) => {
+    total += product.FinalPrice * product.Quantity;
+  });
+
+  const totalElement = document.querySelector(".list-total");
+  const totalParagraph = document.createElement("p");
+  totalParagraph.style.display = "inline";
+  totalParagraph.style.fontWeight = "lighter";
+  totalParagraph.innerHTML = `$${total.toFixed(2)}`;
+  totalElement.appendChild(totalParagraph);
 }
+
 
 function deleteCartItems(list) {
   const cartElements = document.getElementsByClassName("cart-delete");

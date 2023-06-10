@@ -6,7 +6,7 @@ import {
 } from "./utils.mjs";
 import { checkout } from "./externalServices.mjs";
 
-const discountRate = 0.1;
+// const discountRate = 0.1;
 
 // takes a form element and returns an object where the key is the "name" of the form input.
 function formDataToJSON(formElement) {
@@ -29,7 +29,7 @@ function packageItems(items) {
       id: item.Id,
       price: item.FinalPrice,
       name: item.Name,
-      quantity: 1,
+      quantity: item.Quantity,
     };
   });
   return simplifiedItems;
@@ -57,15 +57,18 @@ const checkoutProcess = {
     const itemNumElement = document.querySelector(
       this.outputSelector + " #num-items"
     );
-    itemNumElement.innerText = this.list.length;
+    itemNumElement.innerText = this.list.reduce((sum, item) => sum + item.Quantity, 0);
     // calculate the total of all the items in the cart
-    const amounts = this.list.map((item) => item.FinalPrice -= item.FinalPrice * discountRate);
+    /* const amounts = this.list.map((item) => item.FinalPrice -= item.FinalPrice * discountRate);
     this.itemTotal = amounts.reduce((sum, item) => sum + item);
+    summaryElement.innerText = "$" + this.itemTotal.toFixed(2);
+    console.log("item", this.list) */
+    this.itemTotal = this.list.reduce((sum, item) => sum + (item.FinalPrice * item.Quantity), 0);
     summaryElement.innerText = "$" + this.itemTotal.toFixed(2);
   },
   calculateOrdertotal: function () {
     // calculate the shipping and tax amounts. Then use them to along with the cart total to figure out the order total
-    this.shipping = 10 + (this.list.length - 1) * 2;
+    this.shipping = 10 + (this.list.reduce((sum, item) => sum + item.Quantity, 0) - 1) * 2;
     this.tax = (this.itemTotal * 0.06).toFixed(2);
     this.orderTotal = (
       parseFloat(this.itemTotal) +
@@ -101,7 +104,7 @@ const checkoutProcess = {
       const res = await checkout(json);
       console.log(res);
       setLocalStorage("so-cart", []);
-
+      // setLocalStorage("json", json)
       location.assign("/checkout/success.html");
     } catch (err) {
       removeAllAlerts();
