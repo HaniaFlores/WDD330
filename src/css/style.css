@@ -292,6 +292,7 @@ button {
 .product-card {
   display: grid;
   grid-template-rows: auto auto auto 1fr;
+  grid-auto-rows: minmax(0, 1fr);
   grid-gap: 10px;
   position: relative;
 }
