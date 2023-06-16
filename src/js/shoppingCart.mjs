@@ -1,17 +1,17 @@
-import {renderListWithTemplate, getLocalStorage } from "./utils.mjs";
+import { renderListWithTemplate, getLocalStorage } from "./utils.mjs";
 
 export default function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   //renderListWithTemplate will run if "so-cart" exist in localStorage
   if (
-  localStorage.getItem("so-cart") !== null &&
-  Object.keys(cartItems).length > 0
+    localStorage.getItem("so-cart") !== null &&
+    Object.keys(cartItems).length > 0
   ) {
     const el = document.querySelector(".product-list");
     renderListWithTemplate(cartItemTemplate, el, cartItems);
     // console.log(cartItems);
-    
-  //The total element will only appear when the cart is not empty.
+
+    //The total element will only appear when the cart is not empty.
     calculateListTotal(cartItems);
     document.querySelector(".hide").style.display = "flex";
   }
@@ -20,8 +20,13 @@ export default function renderCartContents() {
 }
 
 function cartItemTemplate(item) {
+  let colorItem = item.Colors.filter(
+    (colorName) => colorName.ColorPreviewImageSrc === item.Images.PrimarySmall
+  );
   const newItem = `<li class="cart-card divider">
-  <a href="/product_pages/index.html?product=${item.Id}" class="cart-card__image">
+  <a href="/product_pages/index.html?product=${
+    item.Id
+  }" class="cart-card__image">
     <img
       src="${item.Images.PrimarySmall}"
       alt="${item.Name}"
@@ -31,7 +36,7 @@ function cartItemTemplate(item) {
   <a href="/product_pages/index.html?product=${item.Id}">
     <h2 class="card__name">${item.Name}</h2>
   </a>
-  <p class="cart-card__color">${item.Colors[0].ColorName}</p>
+  <p class="cart-card__color">${colorItem[0]?.ColorName ? colorItem[0]?.ColorName : item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty: ${item.Quantity}</p>
   <div class="price-div">
     <p class="original-price">$${item.ListPrice}</p>
@@ -70,7 +75,6 @@ function calculateListTotal(list) {
   totalElement.appendChild(totalParagraph);
 }
 
-
 function deleteCartItems(list) {
   const cartElements = document.getElementsByClassName("cart-delete");
 
@@ -86,4 +90,3 @@ function deleteCartItems(list) {
     });
   }
 }
-
