@@ -12,7 +12,9 @@ function isTokenValid(token) {
     // get the current date
     let currentDate = new Date();
     // JWT exp is in seconds, the time from our current date will be milliseconds.
-    if (decoded.exp * 1000 < currentDate.getTime()) {
+    let expirationTime = decoded.exp * 1000 + 120 * 1000;
+
+    if (expirationTime < currentDate.getTime()) {
       //token expiration has passed
       console.log("Token expired.");
       return false;
