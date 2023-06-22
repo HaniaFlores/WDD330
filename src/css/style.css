@@ -275,6 +275,10 @@ button {
   display: block;
 }
 
+.productImage-container__colors-item:nth-child(1) {
+  box-shadow: 0 0 5px 5px red;
+}
+
 #productFinalPrice.product-card__price,
 .original-price {
   font-size: var(--small-font);
